@@ -1,0 +1,7 @@
+{
+  "hello":"merhaba",
+  "person":{
+    "social-number":"TC No"
+  },
+  "goodbye":"güle güle {{value}}"
+}

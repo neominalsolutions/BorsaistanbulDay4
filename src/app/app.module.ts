@@ -10,10 +10,39 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ApiLoggerService } from 'src/providers/api-logger.service';
 import { Router } from '@angular/router';
 import { NgxPermissionsModule } from 'ngx-permissions';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormPageComponent } from './pages/form-page/form-page.component';
+import { DemoFormComponent } from './pages/form-page/feature/demo-form/demo-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, AboutPageComponent],
-  imports: [BrowserModule, AppRoutingModule, NgxPermissionsModule.forRoot()],
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    AboutPageComponent,
+    FormPageComponent,
+    DemoFormComponent,
+  ],
+  imports: [
+    ReactiveFormsModule, // reactive form ile çalışmak için
+    BrowserModule,
+    AppRoutingModule,
+    NgxPermissionsModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient],
+      },
+    }),
+    HttpClientModule,
+  ],
   providers: [
     {
       provide: Logger,

@@ -1,0 +1,67 @@
+
+<!-- [formGroup] directive ile bir form groubu olduğun tanımladık  -->
+<form [formGroup]="DemoForm" (submit)="onFormSubmit()">
+
+  <label for="firstname">FirstName: </label>
+  <!-- formControlName directive ile ilgili forma bağlantısını yaptık -->
+    <input id="firstname" type="text" formControlName="firstname">
+    <!-- formControlName form group altındaki formControl nesnesine model binding sağladık -->
+
+    <!-- hata mesaj yöntemi -->
+    <span *ngIf="DemoForm.get('firstname')?.hasError('required') && (DemoForm.get('firstname')?.dirty || DemoForm.get('firstname')?.touched)">
+      Bu alan boş geçilemez
+    </span>
+  
+
+    <label for="lastname">LastName: </label>
+    <input id="lastname" type="text" formControlName="lastname">
+
+
+
+    <label for="age">Age: </label>
+    <input id="age" type="number" formControlName="age">
+
+    <span *ngIf="DemoForm.get('age')?.hasError('min')">
+      Min yaş 18 olmalıdır
+    </span>
+
+    <span *ngIf="DemoForm.get('age')?.hasError('max')">
+      Max yaş 18 olmalıdır
+    </span>
+
+    <!-- formGroupName ise  [formGroup] içerisinde tanımlanmış bir nested form varsa -->
+
+    <!-- nested formlarda formGroupName directive kullanırız -->
+  <div formGroupName="address">
+    <h2>Address</h2>
+
+    <label for="street">Street: </label>
+    <input id="street" type="text" formControlName="street">
+
+    <label for="city">City: </label>
+    <input id="city" type="text" formControlName="city">
+
+    <label for="state">State: </label>
+    <input id="state" type="text" formControlName="state">
+
+    <label for="zip">Zip Code: </label>
+    <input id="zip" type="text" formControlName="zip">
+  </div>
+
+
+  <!-- dynamic olan yani ekleme çıkarma yaptıkça ekran bir form değerini yansıtılacağı durumlarda formArrayName directive kullanırız -->
+  <div formArrayName="tags">
+    <h2>Tags</h2>
+    <button type="button" (click)="addTag()">+ Add another alias</button>
+  
+    <div *ngFor="let alias of tags.controls; let i=index">
+      <!-- The repeated alias template -->
+      <label for="alias-{{ i }}">Tag:</label>
+      <input id="alias-{{ i }}" type="text" [formControlName]="i">
+    </div>
+  </div>
+
+  <!-- form valid olup olmamasına göre kontrol yapabiliriz -->
+  <input [disabled]="DemoForm.invalid" type="submit" value="Save">
+
+</form>

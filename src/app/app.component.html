@@ -2,5 +2,24 @@
 <a routerLink="">Home Page</a>
 &nbsp;
 <a routerLink="about">About Page</a>
+&nbsp;
+<a routerLink="form">Demo Form Page</a>
+
+<select (change)="onLangChange($event)">
+  <option [value]="'tr'">Türkçe</option>
+  <option [value]="'en'">İngilizce</option>
+</select>
+
+<div>
+  hey: {{'hello' | translate}}
+</div>
+
+
+<div [translate]="'goodbye'" [translateParams]="{value: 'can'}"></div>
+
+<div>
+  social: {{'person.social-number' | translate}}
+</div>
+
 
 <router-outlet></router-outlet>

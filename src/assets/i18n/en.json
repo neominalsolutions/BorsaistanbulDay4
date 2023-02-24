@@ -1,0 +1,7 @@
+{
+  "hello":"hello",
+  "person":{
+    "social-number":"SDN"
+  },
+  "goodbye":"goodbye {{value}}"
+}
