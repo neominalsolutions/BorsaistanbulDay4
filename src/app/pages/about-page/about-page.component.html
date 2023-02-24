@@ -1,1 +1,10 @@
 <p>about-page works!</p>
+
+<!-- sadece bu perms sahip olanlar -->
+<button *ngxPermissionsOnly="['contact-form']">
+  Contact Form
+</button>
+
+<ng-template [ngxPermissionsExcept]="['home-write','home-read']">
+  Sadece contact form yetkisine sahip olan görebilir.
+</ng-template>

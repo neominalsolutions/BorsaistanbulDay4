@@ -25,6 +25,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     //this.loggerService.log('app-component-init');
     //console.log('isDev', this.isDev);
+
     this.lg.log('component-logger');
   }
 }

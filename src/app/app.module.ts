@@ -9,10 +9,11 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ApiLoggerService } from 'src/providers/api-logger.service';
 import { Router } from '@angular/router';
+import { NgxPermissionsModule } from 'ngx-permissions';
 
 @NgModule({
   declarations: [AppComponent, HomePageComponent, AboutPageComponent],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, NgxPermissionsModule.forRoot()],
   providers: [
     {
       provide: Logger,
